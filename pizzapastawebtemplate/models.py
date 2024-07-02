@@ -8,7 +8,8 @@ from dotenv import load_dotenv
 
 
 db = SQLAlchemy()
-load_dotenv('whatsapp.env')
+env_file = 'pizzapastawebtemplate\\whatsapp.env'
+load_dotenv(env_file)
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
