@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Login - Liberteri Italiano Web Template</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+	<!--[if IE 6]>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ie6.css') }}">
+	<![endif]-->
+</head>
+<body>
+	<div id="header">
+		<div>
+			<ul class="first">
+				<li><a href="{{ url_for('index') }}">Home</a></li>
+				<li><a href="{{ url_for('menu') }}">Evening Menu</a></li>
+			</ul>
+			<div>
+				<a href="{{ url_for('index') }}"><img src="../static/images/logo.jpg" alt="Logo"></a>
+			</div>
+			<ul>
+				<li><a href="{{ url_for('about') }}">About</a></li>
+				<li><a href="{{ url_for('login') }}">Login</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="login-container">
+		<h1>Login</h1>
+		<form action="{{ url_for('login') }}" method="POST">
+			<label for="username">Username:</label>
+			<input type="text" id="username" name="username" required>
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password" required>
+			<button type="submit">Login</button>
+		</form>
+	</div>
+	<div class="section">
+		<div>
+			<p>&copy; 2024 LNO Pizzeria. All rights reserved. Designed by LNO Pizzeria Team.</p>
+		</div>
+		
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome - Liberteri Italiano Web Template</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+<body>
+    <div id="header">
+        <div>
+            <ul class="first">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('menu') }}">Evening Menu</a></li>
+            </ul>
+            <div>
+                <a href="{{ url_for('index') }}"><img src="../static/images/logo.jpg" alt="Logo"></a>
+            </div>
+            <ul>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('login') }}">Logout</a></li>
+            </ul>
+        </div>
+        <h1>Welcome Customer!</h1>
+        <div>
+            <ul class="customer_op">
+                <li><a href="{{ url_for('customer_order') }}">Place an Order</a></li>
+                <li><a href="{{ url_for('customer_review') }}">Add Review</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

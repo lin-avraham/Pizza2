@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Review - Liberteri Italiano Web Template</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <style>
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+        }
+        .star-rating input[type=radio] {
+            display: none;
+        }
+        .star-rating label {
+            font-size: 2em;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .star-rating input[type=radio]:checked ~ label {
+            color: #f5b301;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #f5b301;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div>
+            <ul class="first">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('menu') }}">Evening Menu</a></li>
+            </ul>
+            <div>
+                <a href="{{ url_for('index') }}"><img src="../static/images/logo.jpg" alt="Logo"></a>
+            </div>
+            <ul>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+				<li><a href="{{ url_for('login') }}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="review-container">
+        <h1>Write a Review</h1>
+        <form id="review-form" action="{{ url_for('submit_review') }}" method="POST" enctype="multipart/form-data">
+            <label for="customer_name">Name:</label>
+            <input type="text" id="customer_name" name="customer_name" required>
+            <label for="review_text">Review:</label>
+            <textarea id="review_text" name="review_text" required></textarea>
+            <label for="rating">Rating:</label>
+            <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5">&#9733;</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">&#9733;</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">&#9733;</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">&#9733;</label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1">&#9733;</label>
+            </div>
+            <label for="review_image">Upload Image:</label>
+            <input type="file" id="review_image" name="review_image" accept="image/*">
+            <button type="submit">Submit Review</button>
+        </form>
+        <div id="feedback-message" style="display:none;">
+            Thank you for your review!
+        </div>
+    </div>
+    <script>
+        document.getElementById('review-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var form = event.target;
+            var formData = new FormData(form);
+            fetch(form.action, {
+                method: form.method,
+                body: formData
+            }).then(response => response.json())
+              .then(data => {
+                  if (data.success) {
+                      document.getElementById('feedback-message').style.display = 'block';
+                      form.reset();
+                  } else {
+                      alert('There was an error submitting your review. Please try again.');
+                  }
+              }).catch(error => {
+                  console.error('Error:', error);
+                  alert('There was an error submitting your review. Please try again.');
+              });
+        });
+    </script>
+</body>
+</html>

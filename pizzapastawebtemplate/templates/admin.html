@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Liberteri Italiano Web Template</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+<body>
+    <div id="header">
+        <div>
+            <ul class="first">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('menu') }}">Evening Menu</a></li>
+            </ul>
+            <div>
+                <a href="{{ url_for('index') }}"><img src="../static/images/logo.jpg" alt="Logo"></a>
+            </div>
+            <ul>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('login') }}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="admin-container">
+        <h1>Admin - Edit Menu</h1>
+        <form action="{{ url_for('admin_add_dish') }}" method="POST">
+            <label for="dish_name">Dish Name:</label>
+            <input type="text" id="dish_name" name="dish_name" required>
+            <label for="dish_description">Description:</label>
+            <textarea id="dish_description" name="dish_description" required></textarea>
+            <label for="dish_price">Price:</label>
+            <input type="number" id="dish_price" name="dish_price" step="0.01" required>
+            <button type="submit">Save</button>
+        </form>
+        <div id="message">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p id="confirmation-message">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>        
+    </div>
+</body>
+</html>

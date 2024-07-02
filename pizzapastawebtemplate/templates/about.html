@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>About - Pizza Pasta Web Template</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+	<!--[if IE 6]>
+		<link rel="stylesheet" type="text/css" href="css/ie6.css">
+	<![endif]-->
+</head>
+<body>
+	<div id="header">
+		<div>
+			<ul class="first">
+				<li><a href="{{ url_for('index') }}">Home</a></li>
+				<li><a href="{{ url_for('menu') }}">Evening Menu</a></li>
+			</ul>
+			<div>
+				<a href="{{ url_for('index') }}"><img src="../static/images/logo.jpg" alt="Logo"></a>
+			</div>
+			<ul>
+				<li class="current"><a href="{{ url_for('about') }}">About</a></li>
+				<li><a href="{{ url_for('login') }}">Login</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="content">
+		<div>
+			<h1>LNO Italian BISTRO</h1>
+			<b>Welcome to LNO </b>
+			<p>the Culinary Embassy of Italy in Israel, A magical place created for warm and united families and good friends like you who love to spend time together, eat well, and most importantly, have fun, just like the Italians know how.</p>
+			<b>Traditional and Modern Italian Flavors</b>
+			<p>LNO brings you the flavors and aromas of both traditional and modern Italian cuisine, with an appetizing design, an open kitchen centered around a traditional wood-fired oven, warm hospitality, and a cheerful and relaxed Italian atmosphere that perfectly suits our Israeli characte</p>
+			<b>Our Exquisite Menu</b>
+			<p>The rich menu is based on fresh and high-quality ingredients imported from Italy, combined with select local produce. With these, he creates a variety of fresh pastas, rich risottos, pizzas in various styles, focaccias, fresh fish, juicy meats, and plenty of dishes suitable for vegans and gluten-sensitive individuals.</p>
+			<b>Our Branches	</b>
+			<p>We look forward to hosting you at LNO branches in Haifa, Zikhron Ya'akov, Bitan Aharon, Kfar Saba, Kiryat, Karmiel, Rishon LeZion, and in our kosher branches in Be'er Sheva, Petah Tikva, and Netivot for an unforgettable Italian dining experience! </p>
+		</div>
+	</div>
+	<div id="footer">
+		<div>
+			<ul>
+				<li id="pasta">
+					<div>
+						<span>Pasta</span>
+						<p>High-quality pasta prepared on-site reflects true Italian tradition, made from fresh, high-quality ingredients, boasting excellent texture and rich flavors.</p>
+						<a href="{{ url_for('index') }}" class="more">More</a>
+					</div>
+				</li>
+				<li id="pizza">
+					<div>
+						<span>Pizza</span>
+						<p>Enjoy an authentic Neapolitan pizza experience, crafted with thin and crispy texture, made with love from the highest quality ingredients.</p>
+						<a href="{{ url_for('index') }}" class="more">More</a>
+					</div>
+				</li>
+				<li id="callus">
+					<div>
+						<span>Call us now!</span>
+						<b>03-485-7375</b>
+						<p><strong>Contact us at:</strong><br><i>LNO@gmail.com</i></p>
+						<p><strong>Snailmail:</strong><span>#3 Hayasmin Street,<br>Ramat Gan<br>Israel</span></p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="section">
+			<div>
+				<p>&copy; Copyright &copy; 2011. Company name all rights reserved</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
