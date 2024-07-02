@@ -1,162 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Customer Order - Liberteri Italiano Web Template</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-<div id="header">
-    <div>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div id="header">
+      <div>
         <ul class="first">
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('menu') }}">Evening Menu</a></li>
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('menu') }}">Evening Menu</a></li>
         </ul>
         <div>
-            <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo"></a>
+          <a href="{{ url_for('index') }}"
+            ><img
+              src="{{ url_for('static', filename='images/logo.jpg') }}"
+              alt="Logo"
+          /></a>
         </div>
         <ul>
-            <li><a href="{{ url_for('about') }}">About</a></li>
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          <li><a href="{{ url_for('about') }}">About</a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
+      </div>
     </div>
-</div>
 
-<div id="order-container">
-    <h1>Create an Order</h1>
-    <form id="order-form">
+    <div id="order-container">
+      <h1>Create an Order</h1>
+      <form id="order-form">
         <label for="customer_name">Name:</label>
-        <input type="text" id="customer_name" name="customer_name" required><br><br>
+        <input
+          type="text"
+          id="customer_name"
+          name="customer_name"
+          required
+        /><br /><br />
 
         <label for="phone_number">Phone Number:</label>
-        <input type="text" id="phone_number" name="phone_number" required><br><br>
+        <input
+          type="text"
+          id="phone_number"
+          name="phone_number"
+          required
+        /><br /><br />
 
         <div id="items-container">
-            <!-- Initial item row -->
-            <div class="item-row">
-                <label for="item_name_1">Item Name:</label>
-                <select id="item_name_1" name="item_name_1" required>
-                    {% for dish in dishes %}
-                        <option value="{{ dish.id }}">{{ dish.dish_name }}</option>
-                    {% endfor %}
-                </select>
-                <label for="quantity_1">Quantity:</label>
-                <input type="number" id="quantity_1" name="quantity_1" min="1" required>
-            </div>
+          <!-- Initial item row -->
+          <div class="item-row" id="item-row-1">
+            <label for="item_name_1">Item Name:</label>
+            <select id="item_name_1" name="item_name_1" required>
+              {% for dish in dishes %}
+              <option value="{{ dish.id }}">{{ dish.dish_name }}</option>
+              {% endfor %}
+            </select>
+            <label for="quantity_1">Quantity:</label>
+            <input
+              type="number"
+              id="quantity_1"
+              name="quantity_1"
+              min="1"
+              required
+            />
+            <button
+              type="button"
+              class="remove-item-btn"
+              onclick="removeItem('item-row-1')"
+              >Remove Item</button
+            >
+          </div>
         </div>
 
-        <button type="button" id="add-item-btn">Add Item</button><br><br>
+        <button type="button" id="add-item-btn">Add Item</button><br /><br />
 
         <label for="payment_method">Payment Method:</label>
         <select id="payment_method" name="payment_method" required>
-            <option value="cash">Cash</option>
-            <option value="credit_card">Credit Card</option>
-        </select><br><br>
+          <option value="cash">Cash</option>
+          <option value="credit_card">Credit Card</option> </select
+        ><br /><br />
 
-        <div id="credit-card-info" style="display: none;">
-            <label for="credit_card_number">Credit Card Number:</label>
-            <input type="text" id="credit_card_number" name="credit_card_number">
-            <label for="expiration_date">Expiration Date:</label>
-            <input type="text" id="expiration_date" name="expiration_date">
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv">
-        </div><br>
+        <div id="credit-card-info" style="display: none">
+          <label for="credit_card_number">Credit Card Number:</label>
+          <input
+            type="text"
+            id="credit_card_number"
+            name="credit_card_number"
+          />
+          <label for="expiration_date">Expiration Date:</label>
+          <input type="text" id="expiration_date" name="expiration_date" />
+          <label for="cvv">CVV:</label>
+          <input type="text" id="cvv" name="cvv" /> </div
+        ><br />
 
         <label for="delivery_option">Delivery Option:</label>
         <select id="delivery_option" name="delivery_option" required>
-            <option value="pickup">Pickup</option>
-            <option value="delivery">Delivery</option>
-        </select><br><br>
+          <option value="pickup">Pickup</option>
+          <option value="delivery">Delivery</option> </select
+        ><br /><br />
 
-        <div id="delivery-address" style="display: none;">
-            <label for="address">Delivery Address:</label>
-            <textarea id="address" name="address"></textarea>
-        </div><br>
+        <div id="delivery-address" style="display: none">
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city" required />
+          <label for="street">Street:</label>
+          <input type="text" id="street" name="street" required />
+          <label for="apartment_no">Apartment Number:</label>
+          <input
+            type="text"
+            id="apartment_number"
+            name="apartment_apartment_number"
+            required
+          /> </div
+        ><br />
 
         <button type="submit">Submit Order</button>
-    </form>
-    <div id="confirmation-message"></div> <!-- Placeholder for the confirmation message -->
-</div>
+      </form>
+      <div id="confirmation-message"></div>
+      <!-- Placeholder for the confirmation message -->
+    </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const addItemBtn = document.getElementById('add-item-btn');
-        const itemsContainer = document.getElementById('items-container');
-        let itemCounter = 1;
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const addItemBtn = document.getElementById('add-item-btn');
+          const itemsContainer = document.getElementById('items-container');
+          let itemCounter = 1;
 
-        addItemBtn.addEventListener('click', function() {
-            itemCounter++;
-            const newItemRow = document.createElement('div');
-            newItemRow.classList.add('item-row');
-            newItemRow.innerHTML = `
-                <label for="item_name_${itemCounter}">Item Name:</label>
-                <select id="item_name_${itemCounter}" name="item_name_${itemCounter}" required>
-                    {% for dish in dishes %}
-                        <option value="{{ dish.id }}">{{ dish.dish_name }}</option>
-                    {% endfor %}
-                </select>
-                <label for="quantity_${itemCounter}">Quantity:</label>
-                <input type="number" id="quantity_${itemCounter}" name="quantity_${itemCounter}" min="1" required>
-            `;
-            itemsContainer.appendChild(newItemRow);
-        });
+          addItemBtn.addEventListener('click', function() {
+              itemCounter++;
+              const newItemRow = document.createElement('div');
+              newItemRow.classList.add('item-row');
+              newItemRow.id = `item-row-${itemCounter}`;
+              newItemRow.innerHTML = `
+                  <label for="item_name_${itemCounter}">Item Name:</label>
+                  <select id="item_name_${itemCounter}" name="item_name_${itemCounter}" required>
+                      {% for dish in dishes %}
+                          <option value="{{ dish.id }}">{{ dish.dish_name }}</option>
+                      {% endfor %}
+                  </select>
+                  <label for="quantity_${itemCounter}">Quantity:</label>
+                  <input type="number" id="quantity_${itemCounter}" name="quantity_${itemCounter}" min="1" required>
+                  <button type="button" class="remove-item-btn" onclick="removeItem('item-row-${itemCounter}')">Remove Item</button>
+              `;
+              itemsContainer.appendChild(newItemRow);
+          });
 
-        const paymentMethodSelect = document.getElementById('payment_method');
-        const creditCardInfo = document.getElementById('credit-card-info');
-        const deliveryOptionSelect = document.getElementById('delivery_option');
-        const deliveryAddress = document.getElementById('delivery-address');
+          const paymentMethodSelect = document.getElementById('payment_method');
+          const creditCardInfo = document.getElementById('credit-card-info');
+          const deliveryOptionSelect = document.getElementById('delivery_option');
+          const deliveryAddress = document.getElementById('delivery-address');
 
-        paymentMethodSelect.addEventListener('change', function() {
-            if (paymentMethodSelect.value === 'credit_card') {
-                creditCardInfo.style.display = 'block';
-            } else {
-                creditCardInfo.style.display = 'none';
-            }
-        });
+          paymentMethodSelect.addEventListener('change', function() {
+              if (paymentMethodSelect.value === 'credit_card') {
+                  creditCardInfo.style.display = 'block';
+              } else {
+                  creditCardInfo.style.display = 'none';
+              }
+          });
 
-        deliveryOptionSelect.addEventListener('change', function() {
-            if (deliveryOptionSelect.value === 'delivery') {
-                deliveryAddress.style.display = 'block';
-            } else {
-                deliveryAddress.style.display = 'none';
-            }
-        });
+          deliveryOptionSelect.addEventListener('change', function() {
+              if (deliveryOptionSelect.value === 'delivery') {
+                  deliveryAddress.style.display = 'block';
+                  // Make delivery address fields required
+                  document.getElementById('city').required = true;
+                  document.getElementById('street').required = true;
+                  document.getElementById('apartment_no').required = true;
+              } else {
+                  deliveryAddress.style.display = 'none';
+                  // Remove required attribute from delivery address fields
+                  document.getElementById('city').required = false;
+                  document.getElementById('street').required = false;
+                  document.getElementById('apartment_no').required = false;
+              }
+          });
 
-        // Add event listener to handle form submission
-        document.getElementById('order-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
+          window.removeItem = function(itemId) {
+              const itemRow = document.getElementById(itemId);
+              if (itemsContainer.children.length > 1) {
+                  itemsContainer.removeChild(itemRow);
+              } else {
+                  alert('You must have at least one item in the order.');
+              }
+          };
 
-            const formData = new FormData(this); // Get form data
+          // Add event listener to handle form submission
+          document.getElementById('order-form').addEventListener('submit', function(event) {
+              event.preventDefault(); // Prevent the default form submission
 
-            fetch('{{ url_for('customer_order') }}', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Display the confirmation message
-                    const confirmationMessage = document.getElementById('confirmation-message');
-                    confirmationMessage.innerText = `Thanks for your order. Order ID: ${data.order_id}`;
+              const formData = new FormData(this); // Get form data
 
-                    // Clear the form
-                    document.getElementById('order-form').reset();
-                    // Reset itemCounter and clear additional item rows
-                    itemCounter = 1;
-                    while (itemsContainer.children.length > 1) {
-                        itemsContainer.removeChild(itemsContainer.lastChild);
-                    }
-                } else {
-                    alert(`Failed to create order: ${data.error}`); // Show alert with error message
-                }
-            })
-            .catch(error => {
-                alert(`Error: ${error.message}`); // Show alert with error message
-            });
-        });
-    });
-</script>
+              fetch('{{ url_for('customer_order') }}', {
+                  method: 'POST',
+                  body: formData
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.success) {
+                      // Display the confirmation message
+                      const confirmationMessage = document.getElementById('confirmation-message');
+                      confirmationMessage.innerText = `Thanks for your order. Order ID: ${data.order_id}`;
 
-</body>
+                      // Clear the form
+                      document.getElementById('order-form').reset();
+                      // Reset itemCounter and clear additional item rows
+                      itemCounter = 1;
+                      while (itemsContainer.children.length > 1) {
+                          itemsContainer.removeChild(itemsContainer.lastChild);
+                      }
+                  } else {
+                      alert(`Failed to create order: ${data.error}`); // Show alert with error message
+                  }
+              })
+              .catch(error => {
+                  alert(`Error: ${error.message}`); // Show alert with error message
+              });
+          });
+      });
+    </script>
+  </body>
 </html>
