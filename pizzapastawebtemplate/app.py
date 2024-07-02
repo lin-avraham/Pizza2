@@ -8,8 +8,13 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database.db?timeout=10'  # Set timeout to 10 seconds
 app.config['SECRET_KEY'] = 'your_secret_key'
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
+app.config['UPLOAD_FOLDER'] = 'pizzapastawebtemplate\\static\\uploads'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+upload_folder = app.config['UPLOAD_FOLDER']
+if not os.path.exists(upload_folder):
+    os.makedirs(upload_folder)
+os.chmod(upload_folder, 0o777)  # Set permissions to read/write for all user
 
 db.init_app(app)
 migrate = Migrate(app, db)
