@@ -86,7 +86,7 @@ class Order(db.Model):
 
             message = client.messages.create (
             from_='whatsapp:+14155238886',
-            body=f"Hi, your order number {order_id} is ready \n We will be happy to write a review of your order, \n enjoy your meal !",
+            body=f"Hi, your order number {order_id} is ready \nWe will be happy to write a review of your order✍,\nenjoy your meal !🍕🍝",
             to='whatsapp:+972525661997'
             )
 
