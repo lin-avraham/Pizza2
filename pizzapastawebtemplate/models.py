@@ -53,7 +53,7 @@ class Dish(db.Model):
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     customer_name = db.Column(db.String(100), nullable=False)
-    phone_number = db.Column(db.String(20), nullable=True)
+    phone_number = db.Column(db.String(20), nullable=False)
     order_details = db.Column(db.Text, nullable=False)
     payment_method = db.Column(db.String(20), nullable=False)
     credit_card_number = db.Column(db.String(16), nullable=True)
